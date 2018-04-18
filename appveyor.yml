@@ -1,0 +1,34 @@
+environment:
+  # Nuxt required node v8 minimum
+  nodejs_version: "8"
+  # Encrypt sensitive data (https://ci.appveyor.com/tools/encrypt)
+  github_access_token:
+    secure: zPXhG71DmrbTVmhY03LAHjmYRgwnhU7hvpyNKHZ/Lclhc1tcsJHBP255MgNZOtle
+  github_email:
+    secure: nIh2MouYmXKQvd4nY0dO46z+33Boa/AI3Mr9A9ul6wI=
+
+# Only run on master branch
+branches:
+  only:
+  - master
+
+# Install scripts. (runs after repo cloning)
+install:
+  # switch nodejs version
+  - ps: Install-Product node $env:nodejs_version
+  # install modules
+  - npm install
+  # generate static files
+  - npm run build
+  # configure git credentials store (https://www.appveyor.com/docs/how-to/git-push/)
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email $env:github_email
+  # deploy to github pages
+  - push-dir --dir=.vuepress/dist --branch=gh-pages --cleanup
+
+# No tests to run
+test: off
+
+# Don't actually build.
+build: off

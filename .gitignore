@@ -4,5 +4,5 @@ node_modules
 # logs
 npm-debug.log
 
-# VuePress build
-.vuepress
+# VuePress dist
+.vuepress/dist

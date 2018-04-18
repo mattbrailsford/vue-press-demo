@@ -1,7 +1,7 @@
 {
   "name": "vue-press-demo",
   "version": "1.0.0",
-  "description": "A demo VuePress site ",
+  "description": "A demo VuePress site",
   "scripts": {
     "dev": "vuepress dev .",
     "build": "vuepress build ."

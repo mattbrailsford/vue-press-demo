@@ -18,7 +18,6 @@ install:
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install
-  - npm install push-dir
   # generate static files
   - npm run build
   # configure git credentials store (https://www.appveyor.com/docs/how-to/git-push/)
@@ -26,7 +25,7 @@ install:
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
   - git config --global user.email $env:github_email
   # deploy to github pages
-  - node_modules/.bin/push-dir --dir=.vuepress/dist --branch=gh-pages --cleanup
+  - npm run deploy
 
 # No tests to run
 test: off

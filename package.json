@@ -4,11 +4,13 @@
   "description": "A demo VuePress site",
   "scripts": {
     "dev": "vuepress dev .",
-    "build": "vuepress build ."
+    "build": "vuepress build .",
+    "deploy": "push-dir --dir=.vuepress/dist --branch=gh-pages --cleanup"
   },
   "author": "Matt Brailsford",
   "license": "MIT",
   "devDependencies": {
+    "push-dir": "^0.4.1",
     "vuepress": "^0.6.1"
   }
 }

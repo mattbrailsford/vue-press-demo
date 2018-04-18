@@ -26,7 +26,7 @@ install:
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
   - git config --global user.email $env:github_email
   # deploy to github pages
-  - node node_modules/.bin/push-dir --dir=.vuepress/dist --branch=gh-pages --cleanup
+  - "node_modules/.bin/push-dir" --dir=.vuepress/dist --branch=gh-pages --cleanup
 
 # No tests to run
 test: off
